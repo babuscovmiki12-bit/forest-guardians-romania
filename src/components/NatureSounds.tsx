@@ -215,7 +215,7 @@ export function NatureSounds() {
       </div>
       {!open && (
         <span className="sr-only">
-          Folosește butonul „Deschide controlul de volum" pentru a regla intensitatea sunetelor naturii.
+          Folosește butonul „Deschide controlul de volum” pentru a regla intensitatea sunetelor naturii.
         </span>
       )}
     </div>

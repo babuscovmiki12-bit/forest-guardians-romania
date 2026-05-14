@@ -34,7 +34,7 @@ const LOCATIONS: Location[] = [
     area: "38.138 ha",
     founded: "1935 — primul parc național al României",
     description:
-      "Cunoscut drept „țara apelor albastre", Retezatul găzduiește peste 80 de lacuri glaciare, printre care Bucura — cel mai mare lac glaciar din țară (8,8 ha) — și Zănoaga, cel mai adânc (29 m). Aici cresc peste 1.190 de specii de plante, multe dintre ele endemice.",
+      "Cunoscut drept „țara apelor albastre”, Retezatul găzduiește peste 80 de lacuri glaciare, printre care Bucura — cel mai mare lac glaciar din țară (8,8 ha) — și Zănoaga, cel mai adânc (29 m). Aici cresc peste 1.190 de specii de plante, multe dintre ele endemice.",
     wildlife: [
       "Capră neagră",
       "Marmotă alpină",
