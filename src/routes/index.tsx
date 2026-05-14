@@ -20,8 +20,14 @@ import gallery1 from "@/assets/gallery-1.jpg";
 import gallery2 from "@/assets/gallery-2.jpg";
 import gallery3 from "@/assets/gallery-3.jpg";
 import gallery4 from "@/assets/gallery-4.jpg";
+import gallery5 from "@/assets/gallery-5.jpg";
+import gallery6 from "@/assets/gallery-6.jpg";
+import gallery7 from "@/assets/gallery-7.jpg";
+import gallery8 from "@/assets/gallery-8.jpg";
 import retezatImg from "@/assets/retezat-real.jpg";
 import apuseniImg from "@/assets/apuseni-real.jpg";
+import leteaImg from "@/assets/letea-real.jpg";
+import piatraImg from "@/assets/piatra-craiului-real.jpg";
 import { Leaves } from "@/components/Leaves";
 import { RomaniaMap } from "@/components/RomaniaMap";
 import { NatureSounds } from "@/components/NatureSounds";
@@ -332,6 +338,34 @@ const IMPORTANCE = [
     stat: "33k",
     statLabel: "specii protejate",
   },
+  {
+    icon: Droplets,
+    title: "Apă curată",
+    text: "Rădăcinile pădurilor filtrează natural apa și mențin debitul izvoarelor. Fără ele, peste 60% din râurile României ar seca în timpul verii.",
+    stat: "60%",
+    statLabel: "izvoare protejate",
+  },
+  {
+    icon: Mountain,
+    title: "Soluri stabile",
+    text: "Pădurile țin pământul pe loc. O singură coroană de fag bătrân stabilizează tone de sol și previne alunecările de teren.",
+    stat: "10x",
+    statLabel: "mai puține inundații",
+  },
+  {
+    icon: Sprout,
+    title: "Sol fertil",
+    text: "Frunzele căzute, fungii și microorganismele crează în 100 de ani doar 1 cm de humus — fundamentul vieții pe uscat.",
+    stat: "1 cm",
+    statLabel: "humus / 100 ani",
+  },
+  {
+    icon: TreePine,
+    title: "Răcoare naturală",
+    text: "O pădure matură răcește aerul cu până la 5 °C în zilele caniculare și eliberează zilnic mii de litri de apă în atmosferă.",
+    stat: "−5°C",
+    statLabel: "în pădure vara",
+  },
 ];
 
 function ImportanceSection() {
@@ -490,9 +524,7 @@ function DeforestationSection() {
               className="text-4xl font-medium leading-tight sm:text-5xl md:text-6xl"
             >
               Tăierile{" "}
-              <span className="bg-gradient-warning bg-clip-text italic text-transparent">
-                ilegale
-              </span>{" "}
+              <span className="text-gradient-warning italic">ilegale</span>{" "}
               distrug viața
             </h2>
             <p className="mt-6 text-base leading-relaxed text-muted-foreground">
@@ -510,7 +542,7 @@ function DeforestationSection() {
                   style={{ borderColor: "oklch(0.65 0.24 28 / 0.3)" }}
                 >
                   <div
-                    className="bg-gradient-warning bg-clip-text text-3xl font-bold text-transparent"
+                    className="text-gradient-warning text-3xl font-bold"
                     aria-hidden
                   >
                     {s.value}
@@ -561,12 +593,15 @@ function DeforestationSection() {
               </div>
             </div>
             <div
-              className="absolute -bottom-6 -right-6 hidden rotate-3 rounded-2xl bg-destructive p-5 text-destructive-foreground shadow-glow sm:block"
+              className="mt-6 inline-flex rotate-1 items-center gap-4 rounded-2xl bg-destructive p-5 text-destructive-foreground shadow-glow lg:absolute lg:-bottom-8 lg:right-4 lg:mt-0"
               style={{ boxShadow: "0 0 40px oklch(0.65 0.24 28 / 0.5)" }}
               aria-label="Cifră alarmantă: un copac la fiecare două secunde"
             >
-              <div className="text-xs uppercase tracking-widest opacity-80">Cifră alarmantă</div>
-              <div className="mt-1 text-3xl font-bold">1 copac / 2s</div>
+              <AlertTriangle size={28} aria-hidden className="shrink-0" />
+              <div>
+                <div className="text-[10px] uppercase tracking-widest opacity-80">Cifră alarmantă</div>
+                <div className="mt-0.5 text-2xl font-bold leading-none">1 copac / 2s</div>
+              </div>
             </div>
           </div>
         </div>
@@ -660,6 +695,12 @@ const GALLERY = [
   { src: gallery3, alt: "Pădure de fag în culorile toamnei" },
   { src: retezatImg, alt: "Lac glaciar în Parcul Național Retezat", span: "col-span-2" },
   { src: gallery4, alt: "Pârâu de munte prin pădurea cu mușchi", span: "row-span-2" },
+  { src: gallery5, alt: "Pădure de fag la răsărit, raze de soare prin ceață" },
+  { src: gallery6, alt: "Cerb carpatin în luminișul de toamnă" },
+  { src: gallery8, alt: "Vedere aeriană a Carpaților în culorile toamnei", span: "col-span-2" },
+  { src: piatraImg, alt: "Creasta calcaroasă a Pietrei Craiului" },
+  { src: gallery7, alt: "Râu de munte cristalin prin pădurea de molid" },
+  { src: leteaImg, alt: "Pădurea Letea — stejari seculari și liane" },
 ];
 
 function GallerySection() {
