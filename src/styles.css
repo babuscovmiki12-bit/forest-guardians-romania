@@ -201,4 +201,11 @@ html {
   .bg-gradient-hero { background: var(--gradient-hero); }
   .bg-gradient-glow { background: var(--gradient-glow); }
   .bg-gradient-warning { background: var(--gradient-warning); }
+
+  .text-gradient-warning {
+    background: var(--gradient-warning);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
 }
