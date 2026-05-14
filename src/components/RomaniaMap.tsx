@@ -1,17 +1,21 @@
-import { useState } from "react";
-import retezatImg from "@/assets/retezat.jpg";
-import apuseniImg from "@/assets/apuseni.jpg";
-import leteaImg from "@/assets/letea.jpg";
-import piatraImg from "@/assets/piatra-craiului.jpg";
+import { useState, useRef, useEffect, useCallback, useId } from "react";
+import retezatImg from "@/assets/retezat-real.jpg";
+import apuseniImg from "@/assets/apuseni-real.jpg";
+import leteaImg from "@/assets/letea-real.jpg";
+import piatraImg from "@/assets/piatra-craiului-real.jpg";
 import maramuresImg from "@/assets/maramures.jpg";
 
 type Location = {
   id: string;
   name: string;
+  shortName: string;
   /* Position as % within the SVG viewBox area */
   x: number;
   y: number;
   image: string;
+  imageCredit: string;
+  area: string;
+  founded: string;
   description: string;
   wildlife: string[];
   importance: string;
@@ -22,86 +26,188 @@ const LOCATIONS: Location[] = [
   {
     id: "retezat",
     name: "Parcul Național Retezat",
+    shortName: "Retezat",
     x: 30,
     y: 62,
     image: retezatImg,
+    imageCredit: "Foto: Wikimedia Commons",
+    area: "38.138 ha",
+    founded: "1935 — primul parc național al României",
     description:
-      "Primul parc național din România, cunoscut pentru cele peste 80 de lacuri glaciare și relieful alpin spectaculos.",
-    wildlife: ["Capra neagră", "Marmota", "Acvila de munte", "Floarea de colț"],
+      "Cunoscut drept „țara apelor albastre", Retezatul găzduiește peste 80 de lacuri glaciare, printre care Bucura — cel mai mare lac glaciar din țară (8,8 ha) — și Zănoaga, cel mai adânc (29 m). Aici cresc peste 1.190 de specii de plante, multe dintre ele endemice.",
+    wildlife: [
+      "Capră neagră",
+      "Marmotă alpină",
+      "Acvilă de munte",
+      "Floarea de colț",
+      "Zâmbru (Pinus cembra)",
+      "Urs brun",
+    ],
     importance:
-      "Rezervație a biosferei UNESCO. Adăpostește una dintre cele mai bogate flore alpine din Europa.",
+      "Rezervație a Biosferei UNESCO din 1979. Adăpostește una dintre cele mai bogate flore alpine din Europa și ultimele păduri virgine de molid din Carpați.",
   },
   {
     id: "apuseni",
     name: "Munții Apuseni",
+    shortName: "Apuseni",
     x: 32,
     y: 38,
     image: apuseniImg,
+    imageCredit: "Foto: Wikimedia Commons",
+    area: "75.784 ha",
+    founded: "Parc Natural din 2000",
     description:
-      "Un labirint de peșteri, chei calcaroase și păduri seculare de fag și molid.",
-    wildlife: ["Urs brun", "Râs", "Liliacul mic cu potcoavă", "Tisă"],
+      "Un labirint subteran cu peste 1.500 de peșteri (Scărișoara, Meziad, Urșilor), chei calcaroase spectaculoase și păduri seculare de fag și molid. Ascunde Cetățile Ponorului — un sistem de chei și avene unic în Europa.",
+    wildlife: [
+      "Urs brun",
+      "Râs eurasiatic",
+      "Liliacul mic cu potcoavă",
+      "Tisă (Taxus baccata)",
+      "Cocoș de munte",
+      "Salamandră de foc",
+    ],
     importance:
-      "Rezervorul de carstic și hidrologic al Transilvaniei — sursă de apă curată pentru milioane de oameni.",
+      "Rezervorul carstic și hidrologic al Transilvaniei — sursă de apă curată pentru milioane de oameni. Peșterile adăpostesc gheață veche de mii de ani.",
   },
   {
     id: "letea",
     name: "Pădurea Letea",
+    shortName: "Letea",
     x: 88,
     y: 52,
     image: leteaImg,
+    imageCredit: "Foto: Wikimedia Commons",
+    area: "5.247 ha",
+    founded: "1938 — cea mai veche rezervație naturală din România",
     description:
-      "Cea mai veche rezervație naturală din România (1938), o pădure subtropicală unică între dunele Deltei Dunării.",
-    wildlife: ["Cai sălbatici", "Vulturul codalb", "Stejar brumăriu", "Viță sălbatică"],
+      "Cea mai nordică pădure subtropicală din Europa, situată pe grindurile dintre brațele Sulina și Chilia ale Dunării. Stejarii ei seculari, înfășurați în liane (viță sălbatică, hamei), trăiesc între dune de nisip și mlaștini.",
+    wildlife: [
+      "Cai sălbăticiți (peste 500 exemplare)",
+      "Vulturul codalb",
+      "Stejar brumăriu",
+      "Liană (Periploca graeca)",
+      "Pelican comun",
+      "Șarpe rău (Coluber caspius)",
+    ],
     importance:
-      "Ecosistem unic în Europa — un mozaic de pădure, dune și mlaștini protejat de UNESCO.",
+      "Ecosistem unic în Europa — singurul loc din lume cu acest mozaic de pădure de stejar, dune de nisip și liane mediteraneene. Inclus în Rezervația Biosferei Delta Dunării (UNESCO).",
   },
   {
     id: "piatra-craiului",
-    name: "Piatra Craiului",
+    name: "Parcul Național Piatra Craiului",
+    shortName: "Piatra Craiului",
     x: 58,
     y: 55,
     image: piatraImg,
+    imageCredit: "Foto: Wikimedia Commons",
+    area: "14.781 ha",
+    founded: "Parc Național din 1990",
     description:
-      "O creastă calcaroasă spectaculoasă de 25 km, acoperită de păduri de molid și jnepeniș.",
-    wildlife: ["Capra neagră", "Garofița Pietrei Craiului", "Cocoș de munte", "Lup"],
+      "O creastă calcaroasă de 25 km — cea mai lungă și impresionantă din Carpați — cu vârful Vârful La Om (2.238 m). Pe versanți cresc păduri de molid, fag și jnepeniș, iar în văi se ascund chei spectaculoase precum Zărneștilor și Dâmbovicioarei.",
+    wildlife: [
+      "Capră neagră",
+      "Garofița Pietrei Craiului (endemic mondial)",
+      "Cocoș de munte",
+      "Lup carpatin",
+      "Râs",
+      "Acvilă de stâncă",
+    ],
     importance:
-      "Endemism vegetal — adăpostește specii care nu cresc nicăieri altundeva pe planetă.",
+      "Endemism vegetal — peste 1.100 de specii de plante, dintre care Garofița Pietrei Craiului (Dianthus callizonus) nu crește nicăieri altundeva pe Pământ.",
   },
   {
     id: "maramures",
     name: "Maramureș — zonă defrișată",
+    shortName: "Maramureș",
     x: 45,
     y: 18,
     image: maramuresImg,
+    imageCredit: "Foto: imagine documentară",
+    area: "peste 340 ha tăiate doar într-un singur dosar (2020)",
+    founded: "Zonă afectată de tăieri ilegale masive",
     description:
-      "Una dintre cele mai afectate regiuni de tăieri ilegale. Mii de hectare de pădure virgină au dispărut în ultimii 20 de ani.",
-    wildlife: ["Urs brun (în declin)", "Lup", "Cerb carpatin", "Salamandră"],
+      "Una dintre cele mai afectate regiuni din Europa de tăieri ilegale. Mii de hectare de pădure virgină au dispărut în ultimii 20 de ani, deși Maramureșul găzduiește unele dintre ultimele păduri seculare ale continentului. Investigațiile autorităților au descoperit prejudicii de ordinul milioanelor de euro.",
+    wildlife: [
+      "Urs brun (în declin accentuat)",
+      "Lup carpatin",
+      "Cerb carpatin",
+      "Salamandră",
+      "Cocoș de munte (vulnerabil)",
+      "Bufniță de pădure",
+    ],
     importance:
-      "Pierderea pădurilor virgine afectează clima, biodiversitatea și viața comunităților locale.",
+      "Pierderea pădurilor virgine afectează clima locală, biodiversitatea, debitul râurilor și siguranța comunităților — defrișările au dus la inundații majore în 2008 și 2010.",
     warning: true,
   },
 ];
 
 export function RomaniaMap() {
-  const [active, setActive] = useState<Location>(LOCATIONS[0]);
+  const [activeIndex, setActiveIndex] = useState(0);
+  const active = LOCATIONS[activeIndex];
+  const buttonRefs = useRef<Array<HTMLButtonElement | null>>([]);
+  const liveRegionId = useId();
+
+  const move = useCallback((delta: number) => {
+    setActiveIndex((i) => {
+      const next = (i + delta + LOCATIONS.length) % LOCATIONS.length;
+      buttonRefs.current[next]?.focus();
+      return next;
+    });
+  }, []);
+
+  // Keyboard navigation: arrow keys cycle locations when map area is focused
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === "ArrowRight" || e.key === "ArrowDown") {
+      e.preventDefault();
+      move(1);
+    } else if (e.key === "ArrowLeft" || e.key === "ArrowUp") {
+      e.preventDefault();
+      move(-1);
+    } else if (e.key === "Home") {
+      e.preventDefault();
+      setActiveIndex(0);
+      buttonRefs.current[0]?.focus();
+    } else if (e.key === "End") {
+      e.preventDefault();
+      const last = LOCATIONS.length - 1;
+      setActiveIndex(last);
+      buttonRefs.current[last]?.focus();
+    }
+  };
 
   return (
-    <div className="grid gap-8 lg:grid-cols-[1.1fr_1fr] lg:gap-12">
+    <div
+      className="grid gap-8 lg:grid-cols-[1.1fr_1fr] lg:gap-12"
+      role="region"
+      aria-label="Hartă interactivă a pădurilor și parcurilor naționale din România"
+    >
       {/* Map */}
-      <div className="glass-strong relative aspect-[4/3] overflow-hidden rounded-3xl p-6 shadow-elevated">
+      <div
+        className="glass-strong relative aspect-[4/3] overflow-hidden rounded-3xl p-6 shadow-elevated"
+        onKeyDown={handleKeyDown}
+      >
         <div
           className="absolute inset-0 opacity-40"
+          aria-hidden
           style={{
             background:
               "radial-gradient(circle at 30% 30%, oklch(0.78 0.18 145 / 0.3), transparent 60%)",
           }}
         />
+
+        <p className="sr-only">
+          Folosește tastele săgeți pentru a naviga între locații. Tab pentru a sări direct la un buton de locație.
+        </p>
+
         <svg
           viewBox="0 0 100 75"
           className="relative h-full w-full"
-          aria-label="Harta României cu păduri și parcuri naționale"
+          role="img"
+          aria-labelledby={`${liveRegionId}-title`}
         >
-          {/* Stylized Romania silhouette */}
+          <title id={`${liveRegionId}-title`}>
+            Harta României cu 5 locații forestiere marcate
+          </title>
           <defs>
             <linearGradient id="mapFill" x1="0" x2="1" y1="0" y2="1">
               <stop offset="0%" stopColor="oklch(0.35 0.08 145 / 0.7)" />
@@ -121,29 +227,32 @@ export function RomaniaMap() {
             stroke="oklch(0.78 0.18 145 / 0.6)"
             strokeWidth="0.4"
           />
-          {/* River suggestions */}
           <path
             d="M20 30 Q40 40 60 38 T92 42"
             fill="none"
             stroke="oklch(0.7 0.12 220 / 0.5)"
             strokeWidth="0.3"
             strokeDasharray="1 1"
+            aria-hidden
           />
 
-          {LOCATIONS.map((loc) => {
-            const isActive = active.id === loc.id;
+          {LOCATIONS.map((loc, i) => {
+            const isActive = activeIndex === i;
             return (
               <g
                 key={loc.id}
                 transform={`translate(${loc.x} ${loc.y})`}
-                className="cursor-pointer"
-                onClick={() => setActive(loc)}
                 filter="url(#glow)"
+                aria-hidden
               >
                 {isActive && (
                   <circle
                     r="2.5"
-                    fill={loc.warning ? "oklch(0.65 0.24 28 / 0.4)" : "oklch(0.78 0.18 145 / 0.4)"}
+                    fill={
+                      loc.warning
+                        ? "oklch(0.65 0.24 28 / 0.4)"
+                        : "oklch(0.78 0.18 145 / 0.4)"
+                    }
                     className="animate-ping-slow"
                   />
                 )}
@@ -163,53 +272,91 @@ export function RomaniaMap() {
                   className="pointer-events-none select-none"
                   style={{ fontFamily: "var(--font-sans)" }}
                 >
-                  {loc.name.split(" ").slice(-1)[0]}
+                  {loc.shortName}
                 </text>
               </g>
             );
           })}
         </svg>
 
-        <div className="absolute bottom-4 left-6 right-6 flex flex-wrap gap-2">
-          {LOCATIONS.map((loc) => (
-            <button
-              key={loc.id}
-              onClick={() => setActive(loc)}
-              className={`rounded-full px-3 py-1 text-xs font-medium transition-all ${
-                active.id === loc.id
-                  ? loc.warning
-                    ? "bg-destructive text-destructive-foreground shadow-glow"
-                    : "bg-primary text-primary-foreground shadow-glow"
-                  : "glass text-foreground/80 hover:text-foreground"
-              }`}
-            >
-              {loc.name}
-            </button>
-          ))}
+        {/* Accessible buttons (also visible chips) */}
+        <div
+          role="tablist"
+          aria-label="Selectează o locație forestieră"
+          className="absolute bottom-4 left-6 right-6 flex flex-wrap gap-2"
+        >
+          {LOCATIONS.map((loc, i) => {
+            const isActive = activeIndex === i;
+            return (
+              <button
+                key={loc.id}
+                ref={(el) => {
+                  buttonRefs.current[i] = el;
+                }}
+                role="tab"
+                type="button"
+                aria-selected={isActive}
+                aria-controls={`${liveRegionId}-panel`}
+                tabIndex={isActive ? 0 : -1}
+                onClick={() => setActiveIndex(i)}
+                onFocus={() => setActiveIndex(i)}
+                aria-label={`${loc.name}${loc.warning ? " (zonă afectată de defrișări)" : ""}`}
+                className={`rounded-full px-3 py-1 text-xs font-medium outline-none transition-all focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background ${
+                  isActive
+                    ? loc.warning
+                      ? "bg-destructive text-destructive-foreground shadow-glow"
+                      : "bg-primary text-primary-foreground shadow-glow"
+                    : "glass text-foreground/80 hover:text-foreground"
+                }`}
+              >
+                {loc.name}
+              </button>
+            );
+          })}
         </div>
       </div>
 
-      {/* Detail panel */}
+      {/* Detail panel — live region announces changes */}
       <div
+        id={`${liveRegionId}-panel`}
         key={active.id}
+        role="tabpanel"
+        aria-live="polite"
+        aria-atomic="true"
         className="glass-strong overflow-hidden rounded-3xl shadow-elevated animate-fade-up"
       >
         <div className="relative h-64 overflow-hidden">
           <img
             src={active.image}
-            alt={active.name}
+            alt={`${active.name} — fotografie`}
             loading="lazy"
             className="h-full w-full object-cover transition-transform duration-700 hover:scale-110"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent" />
+          <div
+            className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent"
+            aria-hidden
+          />
           {active.warning && (
             <div className="absolute right-4 top-4 rounded-full bg-destructive px-3 py-1 text-xs font-semibold uppercase tracking-wider text-destructive-foreground shadow-glow">
               ⚠ Zonă afectată
             </div>
           )}
+          <span className="absolute bottom-2 right-3 text-[10px] uppercase tracking-wider text-foreground/60">
+            {active.imageCredit}
+          </span>
         </div>
         <div className="space-y-5 p-7">
-          <h3 className="text-3xl font-semibold text-gradient">{active.name}</h3>
+          <div>
+            <h3 className="text-3xl font-semibold text-gradient">{active.name}</h3>
+            <div className="mt-2 flex flex-wrap gap-x-4 gap-y-1 text-xs text-muted-foreground">
+              <span>
+                <strong className="text-foreground/80">Suprafață:</strong> {active.area}
+              </span>
+              <span>
+                <strong className="text-foreground/80">Statut:</strong> {active.founded}
+              </span>
+            </div>
+          </div>
           <p className="text-sm leading-relaxed text-muted-foreground">
             {active.description}
           </p>
@@ -238,4 +385,11 @@ export function RomaniaMap() {
       </div>
     </div>
   );
+}
+
+// Hint to make focus-visible useful when initially rendered
+export function useMapFocusHint() {
+  useEffect(() => {
+    /* no-op — placeholder for future enhancements */
+  }, []);
 }
