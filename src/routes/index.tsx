@@ -706,7 +706,6 @@ function DeforestationSection() {
             ))}
           </ol>
         </div>
-        </div>
       </div>
     </section>
   );
