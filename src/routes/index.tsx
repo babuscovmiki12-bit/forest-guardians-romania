@@ -636,7 +636,7 @@ function DeforestationSection() {
               title: "Cauze principale",
               items: [
                 "Tăieri ilegale și braconaj forestier",
-                "Corupție în sistemul silvic și firme „de paie"",
+                "Corupție în sistemul silvic și firme-fantomă",
                 "Cerere mare de lemn (mobilă, peleți, hârtie)",
                 "Lipsa monitorizării din satelit până în 2016",
               ],
@@ -692,7 +692,7 @@ function DeforestationSection() {
             {[
               { year: "1990", text: "Începutul retrocedărilor — peste 3,5 milioane ha de pădure trec în proprietate privată, fără control real." },
               { year: "2005", text: "Inundații catastrofale în Banat și Maramureș — direct legate de defrișările masive din amonte." },
-              { year: "2015", text: "Investigația „Out of Control" (EIA) demonstrează tăieri ilegale industriale în Carpați." },
+              { year: "2015", text: "Investigația Out of Control (EIA) demonstrează tăieri ilegale industriale în Carpați." },
               { year: "2019", text: "Doi pădurari sunt uciși apărând pădurea — Liviu Pop (Maramureș) și Răducu Gorcioaia (Suceava)." },
             ].map((t) => (
               <li
