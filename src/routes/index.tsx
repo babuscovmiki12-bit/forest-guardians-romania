@@ -28,6 +28,8 @@ import retezatImg from "@/assets/retezat-real.jpg";
 import apuseniImg from "@/assets/apuseni-real.jpg";
 import leteaImg from "@/assets/letea-real.jpg";
 import piatraImg from "@/assets/piatra-craiului-real.jpg";
+import deforest1 from "@/assets/deforest-1.jpg";
+import deforest2 from "@/assets/deforest-2.jpg";
 import { Leaves } from "@/components/Leaves";
 import { RomaniaMap } from "@/components/RomaniaMap";
 import { NatureSounds } from "@/components/NatureSounds";
@@ -483,7 +485,7 @@ function FactsSection() {
               className="glass group relative overflow-hidden rounded-2xl p-6 transition-all hover:-translate-y-1 hover:shadow-glow"
             >
               <div
-                className="bg-gradient-glow bg-clip-text text-5xl font-bold text-transparent opacity-30"
+                className="text-gradient text-5xl font-bold opacity-30"
                 aria-hidden
               >
                 {String(i + 1).padStart(2, "0")}
@@ -575,12 +577,20 @@ function DeforestationSection() {
           </div>
           <div className="relative">
             <div className="glass-strong overflow-hidden rounded-3xl shadow-elevated">
-              <img
-                src={apuseniImg}
-                alt="Pădure intactă din Munții Apuseni"
-                loading="lazy"
-                className="h-72 w-full object-cover"
-              />
+              <div className="grid grid-cols-2">
+                <img
+                  src={apuseniImg}
+                  alt="Pădure intactă din Munții Apuseni"
+                  loading="lazy"
+                  className="h-56 w-full object-cover"
+                />
+                <img
+                  src={deforest1}
+                  alt="Versant defrișat din Carpați — cioturi pe pământ gol"
+                  loading="lazy"
+                  className="h-56 w-full object-cover"
+                />
+              </div>
               <div className="grid grid-cols-2 divide-x divide-border">
                 <div className="p-5 text-center">
                   <div className="text-xs uppercase tracking-widest text-primary">Înainte</div>
@@ -592,8 +602,21 @@ function DeforestationSection() {
                 </div>
               </div>
             </div>
+
+            <div className="mt-4 overflow-hidden rounded-3xl shadow-elevated">
+              <img
+                src={deforest2}
+                alt="Vedere aeriană a unei văi carpatice cu defrișări masive"
+                loading="lazy"
+                className="h-56 w-full object-cover"
+              />
+              <p className="bg-card/80 px-4 py-3 text-xs italic text-muted-foreground backdrop-blur">
+                Vedere aeriană — drumurile forestiere și parchetele tăiate brăzdează pădurile Carpaților.
+              </p>
+            </div>
+
             <div
-              className="mt-6 inline-flex rotate-1 items-center gap-4 rounded-2xl bg-destructive p-5 text-destructive-foreground shadow-glow lg:absolute lg:-bottom-8 lg:right-4 lg:mt-0"
+              className="mt-6 inline-flex rotate-1 items-center gap-4 rounded-2xl bg-destructive p-5 text-destructive-foreground shadow-glow"
               style={{ boxShadow: "0 0 40px oklch(0.65 0.24 28 / 0.5)" }}
               aria-label="Cifră alarmantă: un copac la fiecare două secunde"
             >
@@ -604,6 +627,84 @@ function DeforestationSection() {
               </div>
             </div>
           </div>
+        </div>
+
+        {/* Extra info row */}
+        <div className="mt-20 grid gap-6 md:grid-cols-3">
+          {[
+            {
+              title: "Cauze principale",
+              items: [
+                "Tăieri ilegale și braconaj forestier",
+                "Corupție în sistemul silvic și firme-fantomă",
+                "Cerere mare de lemn (mobilă, peleți, hârtie)",
+                "Lipsa monitorizării din satelit până în 2016",
+              ],
+            },
+            {
+              title: "Impact ecologic",
+              items: [
+                "Dispar habitatele urșilor și râșilor",
+                "Râurile devin imprevizibile — viituri și secete",
+                "Pierderea biodiversității unice (peste 40 specii rare)",
+                "Eliberare de CO₂ — accelerează încălzirea globală",
+              ],
+            },
+            {
+              title: "Impact uman",
+              items: [
+                "Inundații devastatoare (2005, 2008, 2010, 2020)",
+                "Alunecări de teren peste sate întregi",
+                "Aer și apă potabilă de calitate scăzută",
+                "Pierderi economice de 6 miliarde € (Curtea de Conturi)",
+              ],
+            },
+          ].map((block) => (
+            <div
+              key={block.title}
+              className="glass rounded-2xl p-6"
+              style={{ borderColor: "oklch(0.65 0.24 28 / 0.25)" }}
+            >
+              <h3 className="text-gradient-warning mb-4 text-lg font-semibold">
+                {block.title}
+              </h3>
+              <ul className="space-y-2 text-sm">
+                {block.items.map((item) => (
+                  <li key={item} className="flex items-start gap-2 text-foreground/85">
+                    <span
+                      aria-hidden
+                      className="mt-1.5 inline-block h-1.5 w-1.5 shrink-0 rounded-full bg-destructive"
+                    />
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+
+        {/* Timeline */}
+        <div className="mt-16">
+          <h3 className="mb-8 text-center text-2xl font-medium">
+            Cronologia <span className="text-gradient-warning italic">defrișărilor</span> în România
+          </h3>
+          <ol className="relative grid gap-6 md:grid-cols-4">
+            {[
+              { year: "1990", text: "Începutul retrocedărilor — peste 3,5 milioane ha de pădure trec în proprietate privată, fără control real." },
+              { year: "2005", text: "Inundații catastrofale în Banat și Maramureș — direct legate de defrișările masive din amonte." },
+              { year: "2015", text: "Investigația Out of Control (EIA) demonstrează tăieri ilegale industriale în Carpați." },
+              { year: "2019", text: "Doi pădurari sunt uciși apărând pădurea — Liviu Pop (Maramureș) și Răducu Gorcioaia (Suceava)." },
+            ].map((t) => (
+              <li
+                key={t.year}
+                className="glass relative rounded-2xl p-5"
+                style={{ borderColor: "oklch(0.65 0.24 28 / 0.3)" }}
+              >
+                <div className="text-gradient-warning text-3xl font-bold">{t.year}</div>
+                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{t.text}</p>
+              </li>
+            ))}
+          </ol>
         </div>
       </div>
     </section>
