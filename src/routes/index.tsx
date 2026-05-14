@@ -483,7 +483,7 @@ function FactsSection() {
               className="glass group relative overflow-hidden rounded-2xl p-6 transition-all hover:-translate-y-1 hover:shadow-glow"
             >
               <div
-                className="bg-gradient-glow bg-clip-text text-5xl font-bold text-transparent opacity-30"
+                className="text-gradient text-5xl font-bold opacity-30"
                 aria-hidden
               >
                 {String(i + 1).padStart(2, "0")}
