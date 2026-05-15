@@ -881,13 +881,18 @@ function FinalSection() {
 
 function Footer() {
   return (
-    <footer className="relative z-10 border-t border-border px-6 py-10 text-center text-xs text-muted-foreground">
-      <p>
-        Proiect școlar de geografie • Luna Pădurii în România • Realizat cu ❤️ pentru natură
-      </p>
-      <p className="mt-2 opacity-70">
-        Imagini: Wikimedia Commons (CC) • Date: Romsilva, Greenpeace România, Agent Green, UNESCO
-      </p>
+    <footer className="relative z-10 border-t border-border px-6 py-10 text-xs text-muted-foreground">
+      <div className="mx-auto flex max-w-6xl flex-col items-center gap-4 sm:flex-row sm:items-center sm:justify-between">
+        <p className="order-2 sm:order-1 tracking-wide text-foreground/60">
+          Created by <span className="font-medium text-foreground/80">Babuscov Patrik</span>
+        </p>
+        <div className="order-1 sm:order-2 text-center sm:text-right">
+          <p>Proiect școlar de geografie • Luna Pădurii în România • Realizat cu ❤️ pentru natură</p>
+          <p className="mt-2 opacity-70">
+            Imagini: Wikimedia Commons (CC) • Date: Romsilva, Greenpeace România, Agent Green, UNESCO
+          </p>
+        </div>
+      </div>
     </footer>
   );
 }
