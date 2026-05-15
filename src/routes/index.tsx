@@ -170,7 +170,7 @@ function Hero() {
         >
           <a
             href="#harta"
-            className="group relative inline-flex items-center gap-2 overflow-hidden rounded-full bg-gradient-glow px-8 py-4 text-sm font-semibold text-primary-foreground shadow-glow transition-transform hover:scale-105 animate-glow-pulse focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+            className="group relative inline-flex items-center gap-2 overflow-hidden rounded-full bg-gradient-glow px-8 py-4 text-sm font-semibold text-primary-foreground shadow-glow transition-all duration-300 hover:scale-[1.03] hover:shadow-elevated focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background"
           >
             <span className="relative z-10">Descoperă pădurile</span>
             <ArrowDown
