@@ -4,6 +4,12 @@ import apuseniImg from "@/assets/apuseni-real.jpg";
 import leteaImg from "@/assets/letea-real.jpg";
 import piatraImg from "@/assets/piatra-craiului-real.jpg";
 import maramuresImg from "@/assets/maramures.jpg";
+import domogledImg from "@/assets/domogled.jpg";
+import calimaniImg from "@/assets/calimani.jpg";
+import rodnaImg from "@/assets/rodna.jpg";
+import semenicImg from "@/assets/semenic.jpg";
+import suceavaImg from "@/assets/suceava-deforest.jpg";
+import fagarasImg from "@/assets/fagaras-deforest.jpg";
 
 type Location = {
   id: string;
@@ -137,6 +143,146 @@ const LOCATIONS: Location[] = [
     ],
     importance:
       "Pierderea pădurilor virgine afectează clima locală, biodiversitatea, debitul râurilor și siguranța comunităților — defrișările au dus la inundații majore în 2008 și 2010.",
+    warning: true,
+  },
+  {
+    id: "domogled",
+    name: "Parcul Național Domogled-Valea Cernei",
+    shortName: "Domogled",
+    x: 26,
+    y: 70,
+    image: domogledImg,
+    imageCredit: "Foto: documentar",
+    area: "61.211 ha — cel mai mare parc național din România",
+    founded: "Parc Național din 1990 (rezervație din 1932)",
+    description:
+      "Un canion de calcar lung de 84 km, sculptat de râul Cerna între Munții Mehedinți și Cernei. Aici trăiește pinul negru de Banat (Pinus nigra var. banatica), endemic mondial, alături de cea mai mare diversitate de fluturi din Europa — peste 1.500 de specii.",
+    wildlife: [
+      "Pin negru de Banat (endemic)",
+      "Vipera cu corn",
+      "Scorpionul carpatin",
+      "Liliacul mediteraneean",
+      "Acvilă țipătoare mică",
+      "Peste 1.500 specii de fluturi",
+    ],
+    importance:
+      "Microclimat sub-mediteraneean unic la nord de Dunăre — temperaturi de iarnă blânde permit supraviețuirea unor specii termofile rare. Inclus în rețeaua Natura 2000.",
+  },
+  {
+    id: "calimani",
+    name: "Parcul Național Călimani",
+    shortName: "Călimani",
+    x: 58,
+    y: 30,
+    image: calimaniImg,
+    imageCredit: "Foto: documentar",
+    area: "24.041 ha",
+    founded: "Parc Național din 2000",
+    description:
+      "Cel mai mare crater vulcanic din Europa (10 km diametru), inactiv de 9 milioane de ani. Pe versanți cresc zâmbri seculari (Pinus cembra) — unii trecuți de 500 de ani — și apare fenomenul „12 Apostoli”, coloane andezitice modelate de eroziune.",
+    wildlife: [
+      "Zâmbru (Pinus cembra) — peste 500 ani",
+      "Cocoș de munte",
+      "Urs brun",
+      "Râs",
+      "Floare de colț",
+      "Ciuf de pădure",
+    ],
+    importance:
+      "Singurul parc din România cu vegetație vulcanică și mlaștini de turbă oligotrofe — arhive climatice cu polen vechi de 10.000 de ani. Vechea exploatare de sulf, închisă în 1997, a lăsat răni încă vizibile.",
+  },
+  {
+    id: "rodna",
+    name: "Parcul Național Munții Rodnei",
+    shortName: "Rodna",
+    x: 50,
+    y: 22,
+    image: rodnaImg,
+    imageCredit: "Foto: documentar",
+    area: "46.399 ha",
+    founded: "Rezervație a Biosferei UNESCO (1979)",
+    description:
+      "Cel mai înalt masiv din Carpații Orientali, cu vârful Pietrosul Rodnei (2.303 m). Adăpostește 23 de lacuri glaciare, peste 1.100 specii de plante și ultimele turme libere de capră neagră reintroduse după 1964.",
+    wildlife: [
+      "Capră neagră (reintrodusă)",
+      "Marmotă alpină",
+      "Acvilă de munte",
+      "Smârdar (Rhododendron myrtifolium)",
+      "Floarea de colț",
+      "Cocoș de munte",
+    ],
+    importance:
+      "Una dintre cele mai bogate flore alpine din Carpați — peste 130 de specii ocrotite. Sursă pentru râurile Someș, Bistrița și Vișeu.",
+  },
+  {
+    id: "semenic",
+    name: "Făgetele seculare Semenic-Cheile Carașului",
+    shortName: "Semenic",
+    x: 18,
+    y: 60,
+    image: semenicImg,
+    imageCredit: "Foto: documentar",
+    area: "36.665 ha (din care 4.292 ha păduri virgine UNESCO)",
+    founded: "Sit UNESCO Patrimoniu Mondial (2017)",
+    description:
+      "Cele mai întinse și compacte păduri virgine de fag din zona temperată a Europei. Făget Izvoarele Nerei adăpostește fagi de peste 350 de ani, înalți de 50 m. Fac parte din rețeaua transnațională „Ancient and Primeval Beech Forests of the Carpathians”.",
+    wildlife: [
+      "Fag european (peste 350 ani)",
+      "Urs brun",
+      "Lup",
+      "Râs",
+      "Bufnița mare",
+      "Salamandră de foc",
+    ],
+    importance:
+      "Patrimoniu Mondial UNESCO — laborator viu pentru ecologia pădurilor neperturbate. România deține peste 60% din pădurile virgine de fag protejate UNESCO la nivel mondial.",
+  },
+  {
+    id: "suceava",
+    name: "Suceava — defrișări în Bucovina",
+    shortName: "Suceava",
+    x: 65,
+    y: 18,
+    image: suceavaImg,
+    imageCredit: "Foto: documentar",
+    area: "peste 20.000 ha tăiate ilegal (2015–2022)",
+    founded: "Punct fierbinte al tăierilor ilegale",
+    description:
+      "Bucovina, cândva renumită pentru codrii ei seculari, a pierdut zone întinse din cauza unei rețele de firme cu acte falsificate. În 2019, pădurarul Liviu Pop a fost ucis în pădure după ce semnalase tăieri ilegale — cazul a declanșat proteste naționale și inițiativa „Forest Inspector”.",
+    wildlife: [
+      "Cocoș de munte (în declin)",
+      "Cerb carpatin",
+      "Urs brun",
+      "Lup",
+      "Bufnița urală",
+      "Ciocănitoare cu spate alb",
+    ],
+    importance:
+      "Pădurile Bucovinei stochează carbon pentru întreaga regiune și alimentează bazinele Sucevei, Moldovei și Bistriței. Pierderea lor accelerează eroziunea și crește riscul de inundații.",
+    warning: true,
+  },
+  {
+    id: "fagaras",
+    name: "Munții Făgăraș — cicatrici de exploatare",
+    shortName: "Făgăraș",
+    x: 55,
+    y: 58,
+    image: fagarasImg,
+    imageCredit: "Foto: documentar aerian",
+    area: "circa 10.000 ha afectate de tăieri rase",
+    founded: "Zonă vizată de programul „Yellowstone-ul Europei”",
+    description:
+      "Cei mai înalți munți ai României (Moldoveanu 2.544 m) sunt străbătuți de drumuri forestiere ilegale vizibile din satelit. Foundation Conservation Carpathia a cumpărat și replantat peste 1.200 ha pentru a crea un viitor parc național de 250.000 ha — cel mai ambițios proiect de re-sălbăticire din Europa.",
+    wildlife: [
+      "Urs brun (cea mai mare populație din UE)",
+      "Lup carpatin",
+      "Râs eurasiatic",
+      "Zimbru (reintrodus 2020)",
+      "Capră neagră",
+      "Vultur pleșuv (reintroducere planificată)",
+    ],
+    importance:
+      "Făgărașul leagă populațiile de carnivore mari din Carpați cu cele din Balcani — coridor ecologic critic la nivel european. Refacerea pădurilor poate readuce 1 milion de tone CO₂ stocate pe an.",
     warning: true,
   },
 ];
