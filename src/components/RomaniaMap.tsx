@@ -352,7 +352,7 @@ export function RomaniaMap() {
           aria-labelledby={`${liveRegionId}-title`}
         >
           <title id={`${liveRegionId}-title`}>
-            Harta României cu 5 locații forestiere marcate
+            Harta României cu {LOCATIONS.length} locații forestiere marcate
           </title>
           <defs>
             <linearGradient id="mapFill" x1="0" x2="1" y1="0" y2="1">
