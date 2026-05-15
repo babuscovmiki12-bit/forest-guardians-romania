@@ -137,17 +137,11 @@ function Hero() {
           alt=""
           width={1920}
           height={1280}
-          className="h-full w-full scale-110 object-cover"
-          style={{ filter: "saturate(1.1) brightness(0.55)" }}
+          className="h-full w-full scale-105 object-cover"
+          style={{ filter: "saturate(1.05) brightness(0.6) contrast(1.05)" }}
         />
-        <div className="absolute inset-0 bg-gradient-hero" />
-        <div
-          className="absolute inset-0 animate-float"
-          style={{
-            background:
-              "radial-gradient(ellipse at 70% 30%, oklch(0.78 0.18 145 / 0.35), transparent 50%), radial-gradient(ellipse at 20% 70%, oklch(0.85 0.16 130 / 0.25), transparent 50%)",
-          }}
-        />
+        <div className="absolute inset-0 bg-gradient-to-b from-background/40 via-background/20 to-background" />
+        <div className="absolute inset-0 bg-gradient-hero opacity-60" />
       </div>
 
       <div className="relative z-10 mx-auto max-w-5xl px-6 text-center">
