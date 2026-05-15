@@ -137,17 +137,11 @@ function Hero() {
           alt=""
           width={1920}
           height={1280}
-          className="h-full w-full scale-110 object-cover"
-          style={{ filter: "saturate(1.1) brightness(0.55)" }}
+          className="h-full w-full scale-105 object-cover"
+          style={{ filter: "saturate(1.05) brightness(0.6) contrast(1.05)" }}
         />
-        <div className="absolute inset-0 bg-gradient-hero" />
-        <div
-          className="absolute inset-0 animate-float"
-          style={{
-            background:
-              "radial-gradient(ellipse at 70% 30%, oklch(0.78 0.18 145 / 0.35), transparent 50%), radial-gradient(ellipse at 20% 70%, oklch(0.85 0.16 130 / 0.25), transparent 50%)",
-          }}
-        />
+        <div className="absolute inset-0 bg-gradient-to-b from-background/40 via-background/20 to-background" />
+        <div className="absolute inset-0 bg-gradient-hero opacity-60" />
       </div>
 
       <div className="relative z-10 mx-auto max-w-5xl px-6 text-center">
@@ -176,7 +170,7 @@ function Hero() {
         >
           <a
             href="#harta"
-            className="group relative inline-flex items-center gap-2 overflow-hidden rounded-full bg-gradient-glow px-8 py-4 text-sm font-semibold text-primary-foreground shadow-glow transition-transform hover:scale-105 animate-glow-pulse focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+            className="group relative inline-flex items-center gap-2 overflow-hidden rounded-full bg-gradient-glow px-8 py-4 text-sm font-semibold text-primary-foreground shadow-glow transition-all duration-300 hover:scale-[1.03] hover:shadow-elevated focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background"
           >
             <span className="relative z-10">Descoperă pădurile</span>
             <ArrowDown
@@ -887,13 +881,18 @@ function FinalSection() {
 
 function Footer() {
   return (
-    <footer className="relative z-10 border-t border-border px-6 py-10 text-center text-xs text-muted-foreground">
-      <p>
-        Proiect școlar de geografie • Luna Pădurii în România • Realizat cu ❤️ pentru natură
-      </p>
-      <p className="mt-2 opacity-70">
-        Imagini: Wikimedia Commons (CC) • Date: Romsilva, Greenpeace România, Agent Green, UNESCO
-      </p>
+    <footer className="relative z-10 border-t border-border px-6 py-10 text-xs text-muted-foreground">
+      <div className="mx-auto flex max-w-6xl flex-col items-center gap-4 sm:flex-row sm:items-center sm:justify-between">
+        <p className="order-2 sm:order-1 tracking-wide text-foreground/60">
+          Created by <span className="font-medium text-foreground/80">Babuscov Patrik</span>
+        </p>
+        <div className="order-1 sm:order-2 text-center sm:text-right">
+          <p>Proiect școlar de geografie • Luna Pădurii în România • Realizat cu ❤️ pentru natură</p>
+          <p className="mt-2 opacity-70">
+            Imagini: Wikimedia Commons (CC) • Date: Romsilva, Greenpeace România, Agent Green, UNESCO
+          </p>
+        </div>
+      </div>
     </footer>
   );
 }
